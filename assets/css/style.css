@@ -7,6 +7,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+/* header */
 header{
     background-color: #333;
     height: 100px;
@@ -51,6 +52,7 @@ header{
     justify-content: center;
     align-items: center;
     flex: 1;
+    z-index: 99;
 }
 .menu ul{
     list-style: none;
@@ -143,6 +145,163 @@ header{
     text-align: center;
 }
 
+/* banners container */
+.banner-area{
+    background-color: #ccc;
+
+    display: flex;
+    flex-direction: column;
+}
+.banner-area #banner1,
+.banner-area #banner2{
+    flex: 1;
+
+    background-position: center;  
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.anime-info--container{
+    background-color: rgba(0, 0, 0, .5);
+    height: 400px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.anime-info{
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+    width: 50%;
+    border-radius: 10px;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.anime-info .title{
+    margin: 15px;
+    text-shadow: 1px 2px 0 #000;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}
+.anime-info .genres ul{
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.anime-info .genres a,
+.anime-info .see-more a{
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30%;
+    padding: 5px;
+    font-weight: 600;
+    transition: all .3s ease;
+
+    display: block;
+    text-align: center;
+}
+.anime-info .genres a:hover,
+.anime-info .see-more a:hover{
+    color: #fe904c;
+}
+.anime-info .synopsis p{
+    text-align: left;
+    margin: 15px;
+    text-shadow: 1px 2px 0 #000;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    /* Utilizaremos a reticências caso o texto da sinopese seja mt grande */
+}
+.anime-info .see-more{
+    padding: 15px;
+}
+.anime-info .see-more a{
+    padding: 15px 25px;
+}
+
+/* Main */
+.section-title{
+    padding: 10px;
+}
+
+.anime-titles--container{
+    background-color: #333;
+
+    display: flex;
+    justify-content: center;
+}
+.anime-titles--container .wrapper{
+    width: 85%;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+}
+.wrapper i{
+    background-color: #eee;
+    font-size: 1.75rem;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.wrapper .fa-angles-left{
+    left: -22px;
+}
+.wrapper .fa-angles-right{
+    right: -22px;
+}
+.wrapper .carousel{
+    padding: 20px 0;
+    overflow: hidden;
+    scroll-behavior: smooth;
+
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
+}
+.wrapper .carousel .anime-title{
+    width: 256px;
+    height: 323px;
+    border-radius: 20px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.anime-title img{
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
+    user-select: none;
+}
+
+/* extra classes */
+.carousel.dragging{
+    user-select: none;
+    scroll-behavior: auto;
+}
 
 /* Media Queries */
 

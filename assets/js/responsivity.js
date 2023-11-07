@@ -25,18 +25,16 @@ function showMenu(){
     menu.style.display = 'block';
     menuMobileIcon.style.display = 'none'
     menuMobileCloseIcon.style.display = 'flex'
-    hideSearchBar();
 }
 function hideMenu(){
     menu.style.display = 'none';
-    menuMobileCloseIcon.style.display = 'none'
-    menuMobileIcon.style.display = 'flex'
+    menuMobileCloseIcon.style.display = 'none';
+    menuMobileIcon.style.display = 'flex';
 }
 
 function showSearchBar(){
     searchBar.style.display = 'flex'
-    hideMenu();
 }
 function hideSearchBar(){
-    searchBar.style.display = 'none'
+    searchBar.style.display = 'none';
 }
