@@ -1,13 +1,17 @@
 // Initial Data
 const animesTrending = {
-    carousel: document.querySelector('#animes-trending .carousel'),
-    id: '#animes-trending'
+    id: '#animes-trending',
+    carousel: document.querySelector('#animes-trending .carousel')
+    
 }
 
 const currentsAnimes = {
+    id: '#currents-animes',
     carousel: document.querySelector('#currents-animes .carousel'),
-    id: '#currents-animes'
+    objectList: [],
+    url: 'https://kitsu.io/api/edge/anime?filter[subtype]=TV&filter[status]=current&page[limit]=20&page[offset]=20'
 }
+
 
 init(animesTrending.carousel, animesTrending.id);
 init(currentsAnimes.carousel, currentsAnimes.id);

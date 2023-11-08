@@ -235,10 +235,18 @@ header{
 /* Main */
 .section-title{
     padding: 10px;
+    color: #fe904c;
+    background-color: #555;
+    text-shadow: 0 0 1px #fe1515;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .anime-titles--container{
     background-color: #333;
+    padding-bottom: 30px;
 
     display: flex;
     justify-content: center;
@@ -263,6 +271,7 @@ header{
     justify-content: center;
     align-items: center;
     text-align: center;
+    z-index: 99;
 }
 .wrapper .fa-angles-left{
     left: -22px;
@@ -277,17 +286,51 @@ header{
 
     display: grid;
     grid-auto-flow: column;
-    gap: 10px;
+    gap: 10px 25px;
 }
 .wrapper .carousel .anime-title{
     width: 256px;
     height: 323px;
     border-radius: 20px;
     cursor: pointer;
+    transition: all 0.3s ease;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+.anime-title:hover{
+    transform: scale(0.95);
+    border: 2px solid #fff;
+}
+.anime-title .cover{
+    background-color: rgba(0, 0, 0, .3);
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    transition: all .3s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    position:absolute;
+}
+.anime-title .cover:hover{
+    background-color: transparent;
+}
+.anime-title .cover span{
+    margin-bottom: 20px;
+    font-weight: 600;
+    padding: 0 5px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    text-align: center;
 }
 .anime-title img{
     width: 100%;

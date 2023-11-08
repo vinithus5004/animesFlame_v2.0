@@ -16,7 +16,8 @@ let bannersElements = [
     }
 ]
 
-let currentsAnimesList = [];
+/* Array que guardará objetos temporariamente e depois será esvaziado */
+let tempArray = [];
 
 let banners = [];
 
@@ -62,6 +63,7 @@ async function getTrengindAnimes(){
         htmlContent += 
         `<div class="anime-title">
             <img src="${anime.attributes.posterImage.original}" alt="" draggable="false">
+            <div class="cover"><span>${anime.attributes.canonicalTitle}</span></div>
         </div> `
     });
 
@@ -81,33 +83,41 @@ function setRandomObjects(objectsArray){
     banners.push(objectsArray[randomIndex2]);
 }
 
-let nextURL = 'https://kitsu.io/api/edge/anime?filter[status]=current&page[limit]=20';
-
-async function getCurrentsAnimes(){
-    let response = await fetch(nextURL);
+// max = 20 ou mais
+async function getAnimes(object, max){
+    let response = await fetch(object.url);
     let json = await response.json();
 
-    json.data.forEach(object => currentsAnimesList.push(object));
+    if(object.objectList.length === 0) object.carousel.innerHTML = '';
+
+    json.data.forEach(item => {
+        object.objectList.push(item);
+        tempArray.push(item);
+    });
+    
+    if(max < 20) max = 20;
+    if(object.objectList.length <= max) setAnimes(object);
 
     if(json.links.next !== undefined){
-        nextURL = json.links.next;
-        await getCurrentsAnimes();
+        object.url = json.links.next;
+        getAnimes(object, max);
     }
-    
 }
 
-function setCurrentsAnimes(){
+/* setar os títulos na página */
+function setAnimes(object){
     let htmlContent = '';
-
-    for(let i = 0; i < 60; i++){
+    for(let i = 0; i < 20; i++){
         htmlContent += 
         `<div class="anime-title">
-            <img src="${currentsAnimesList[i].attributes.posterImage.original}" alt="" draggable="false">
+            <img src="${tempArray[i].attributes.posterImage.original}" alt="" draggable="false">
+            <div class="cover"><span>${tempArray[i].attributes.canonicalTitle}</span></div>
         </div> `
     }
 
-    currentsAnimes.carousel.innerHTML = htmlContent;
+    object.carousel.innerHTML += htmlContent;
+    tempArray = [];
 }
 
 getTrengindAnimes();
-getCurrentsAnimes().then(setCurrentsAnimes);
+getAnimes(currentsAnimes, 10);
