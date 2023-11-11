@@ -61,7 +61,7 @@ async function getTrengindAnimes(){
 
     animeList.forEach(anime => {
         htmlContent += 
-        `<div class="anime-title">
+        `<div class="anime-title" ondblclick="responder(event)">
             <img src="${anime.attributes.posterImage.original}" alt="" draggable="false">
             <div class="cover"><span>${anime.attributes.canonicalTitle}</span></div>
         </div> `
@@ -92,13 +92,14 @@ async function getAnimes(object, max){
 
     json.data.forEach(item => {
         object.objectList.push(item);
-        tempArray.push(item);
+        tempArray.push(item)
     });
     
     if(max < 20) max = 20;
     if(object.objectList.length <= max) setAnimes(object);
 
     if(json.links.next !== undefined){
+        tempArray = [];
         object.url = json.links.next;
         getAnimes(object, max);
     }
@@ -109,7 +110,7 @@ function setAnimes(object){
     let htmlContent = '';
     for(let i = 0; i < 20; i++){
         htmlContent += 
-        `<div class="anime-title">
+        `<div class="anime-title" ondblclick="responder(event)">
             <img src="${tempArray[i].attributes.posterImage.original}" alt="" draggable="false">
             <div class="cover"><span>${tempArray[i].attributes.canonicalTitle}</span></div>
         </div> `
@@ -119,5 +120,16 @@ function setAnimes(object){
     tempArray = [];
 }
 
+async function filterByTitle(title){
+    let response = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${title}&page[limit]=1`);
+    let json = await response.json();
+
+    return json.data;
+}
+
 getTrengindAnimes();
-getAnimes(currentsAnimes, 10);
+getAnimes(currentsAnimes, 60);
+getAnimes(ova, 60);
+getAnimes(upcoming, 60);
+
+function responder(event){}

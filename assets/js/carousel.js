@@ -12,11 +12,28 @@ const currentsAnimes = {
     url: 'https://kitsu.io/api/edge/anime?filter[subtype]=TV&filter[status]=current&page[limit]=20&page[offset]=20'
 }
 
+const ova = {
+    id: '#ova',
+    carousel: document.querySelector('#ova .carousel'),
+    objectList: [],
+    url: 'https://kitsu.io/api/edge/anime?filter[subtype]=OVA&page[limit]=20&page[offset]=20'
+}
 
-init(animesTrending.carousel, animesTrending.id);
-init(currentsAnimes.carousel, currentsAnimes.id);
+const upcoming = {
+    id: '#upcoming',
+    carousel: document.querySelector('#upcoming .carousel'),
+    objectList: [],
+    url: 'https://kitsu.io/api/edge/anime?filter[subtype]=TV&filter[status]=upcoming&page[limit]=20&page[offset]=20'
+}
 
-function init(carousel, id){
+function init(){
+    setCarousel(animesTrending.carousel, animesTrending.id);
+    setCarousel(currentsAnimes.carousel, currentsAnimes.id);
+    setCarousel(ova.carousel, ova.id);
+    setCarousel(upcoming.carousel, upcoming.id);
+}
+
+function setCarousel(carousel, id){
     let arrowBtns = document.querySelectorAll(`${id} .wrapper i`);
 
     let isDragging = false, startX, startScrollLeft;
@@ -29,6 +46,7 @@ function init(carousel, id){
     carousel.addEventListener('touchmove', dragging);
 
     carousel.addEventListener('mouseup', dragStop);
+    //carousel.addEventListener('mouseout', dragStop);
     carousel.addEventListener('touchend', dragStop);
 
     arrowBtns.forEach(btn => {
@@ -53,8 +71,9 @@ function init(carousel, id){
 
     function dragging(event){
         if(!isDragging) return;
-        event.preventDefault();
 
         carousel.scrollLeft = startScrollLeft - ((event.pageX || event.touches[0].pageX) - startX);
     }
 }
+
+init();
