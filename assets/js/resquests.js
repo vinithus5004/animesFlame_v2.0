@@ -61,7 +61,7 @@ async function getTrengindAnimes(){
 
     animeList.forEach(anime => {
         htmlContent += 
-        `<div class="anime-title" ondblclick="responder(event)">
+        `<div class="anime-title">
             <img src="${anime.attributes.posterImage.original}" alt="" draggable="false">
             <div class="cover"><span>${anime.attributes.canonicalTitle}</span></div>
         </div> `
@@ -110,7 +110,7 @@ function setAnimes(object){
     let htmlContent = '';
     for(let i = 0; i < 20; i++){
         htmlContent += 
-        `<div class="anime-title" ondblclick="responder(event)">
+        `<div class="anime-title">
             <img src="${tempArray[i].attributes.posterImage.original}" alt="" draggable="false">
             <div class="cover"><span>${tempArray[i].attributes.canonicalTitle}</span></div>
         </div> `
@@ -127,9 +127,20 @@ async function filterByTitle(title){
     return json.data;
 }
 
+async function responder(event){
+    let titleName = event.target.querySelector('span').innerText;
+    let request = await filterByTitle(titleName);
+
+    localStorage.setItem('object', JSON.stringify(request));
+
+    window.open('pages/animeInfo.html', '_self');
+}
+
 getTrengindAnimes();
 getAnimes(currentsAnimes, 60);
 getAnimes(ova, 60);
 getAnimes(upcoming, 60);
 
-function responder(event){}
+document.querySelectorAll('.carousel').forEach(item => {
+    item.addEventListener('dblclick', responder);
+});

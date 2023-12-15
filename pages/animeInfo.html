@@ -3,11 +3,56 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Anime Info</title>
+        <link rel="icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="../assets/css/header.css">
     </head>
     <body>
-        <h1>Anime Info</h1>
+        <!-- Header -->
+        <header>
+            <div class="menu-mobile">
+                <div class="menu-mobile--icon">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="menu-mobile--closeIcon">
+                    <i class="fa-solid fa-x"></i>
+                </div>
+            </div>
 
-        <script src="../assets/js/object.js"></script>
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Filter</a></li>
+                        <li><a href="#">Schedule</a></li>
+                        <li><a href="#">Premium</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="logo">
+                <img src="../assets/images/AnimesFlame_logo.png" alt="animesFlame_logo">
+            </div>
+
+            <div class="search-bar--container">
+                <input type="text" placeholder="Type Here..."/>
+                <div class="search-bar--icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="search-bar--closeIcon"> <!-- only mobile -->
+                    <i class="fa-solid fa-x"></i>
+                </div>
+            </div>
+            
+            <div class="search-bar-mobile">
+                <span>Search <i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+        </header>
+        
+        <script src="../assets/js/header_responsivity.js"></script>
     </body>
 </html>
