@@ -89,3 +89,22 @@ footer{
     text-align: center;
     color: #fff;
 }
+
+/* Responsivity */
+@media (max-width: 420px) and (min-width: 376px){
+    .signature--area{
+        width: 100%;
+    }
+    .signature--area h2{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 375px){
+    .signature--area{
+        width: 100%;
+    }
+    .signature--area h2{
+        font-size: 18px;
+    }
+}
